@@ -1,0 +1,6 @@
+
+public enum Operations {
+    
+    PLUS,MINUS,MULTIPLICATION,DIVISION,SUM,NOTHING,CANCEL;
+
+}
