@@ -13,7 +13,7 @@ public class Main extends JFrame {
      frame.setResizable(false);
      
      MyPanel panel=new MyPanel();
-     panel.setBackground(Color.black);
+     panel.setBackground(Color.DARK_GRAY);
      
      
      panel.setVisible(true);

@@ -3,12 +3,15 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.naming.BinaryRefAddr;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,7 +20,7 @@ import javax.swing.JTextField;
 
 public class MyPanel extends JPanel implements ActionListener  {
     
-    private static final Exception ArithmeticException = null;
+  
     //component
     private JButton button1;
     private JButton button2;
@@ -30,7 +33,6 @@ public class MyPanel extends JPanel implements ActionListener  {
     private JButton button9;
     private JButton button0;
     private JButton buttonComma;
-    private JButton calculate;
     private JButton bPlus;
     private JButton bMinus;
     private JButton bMultiplication;
@@ -39,8 +41,23 @@ public class MyPanel extends JPanel implements ActionListener  {
     private JButton bCancel;
     private JButton bBack;
     private JTextField jText;
-    private JTextArea jTextF;
     
+    //button convert
+    private JButton bBinary;
+    private JButton bOctal;
+    private JButton bHEx;
+    private JTextArea Tarea1;
+    private JTextArea Tarea2;
+    private JTextArea Tarea3;
+    
+    //color button
+    private JButton Bcolor1;
+    private JButton Bcolor2;
+    private JButton Bcolor3;
+    private JButton Bcolor4;
+    
+ 
+  
     
     //enum variable
     private Operations operations=Operations.NOTHING;
@@ -52,10 +69,26 @@ public class MyPanel extends JPanel implements ActionListener  {
     private static double boxFornumber2=0;
     private static double help=0;
     private static boolean action=false;
+    private boolean onAction=true;
+    private boolean onBinary=false, onOct=false, onHex=false;
+    
     
     StringBuilder sBulider=new StringBuilder();
     
   
+   
+    
+    
+    
+   
+    
+    
+    
+    
+    
+    
+    
+    
     
     public MyPanel() {
         
@@ -207,8 +240,65 @@ public class MyPanel extends JPanel implements ActionListener  {
         bBack.setBackground(Color.orange);
         add(bBack);
         
+        //button to convert numbers
+        bBinary=new JButton();
+        Image imgOK=new ImageIcon(this.getClass().getResource("/green2.png")).getImage();
+        bBinary.setIcon(new ImageIcon(imgOK));
+        bBinary.setBounds(05, 300, 20, 20);
+        bBinary.addActionListener(this);
+        add(bBinary);
         
+        Tarea1=new JTextArea("System dwójkowy");
+        Tarea1.setBounds(26, 300, 140, 20);
+        Tarea1.setBackground(Color.gray);
+        add(Tarea1);
         
+        bOctal=new JButton();
+        bOctal.setIcon(new ImageIcon(imgOK));
+        bOctal.setBounds(05, 325, 20, 20);
+        bOctal.addActionListener(this);
+        add(bOctal);
+        
+        Tarea2=new JTextArea("System ósemkowy");
+        Tarea2.setBounds(26, 325, 140, 20);
+        Tarea2.setBackground(Color.gray);
+        add(Tarea2);
+        
+        bHEx=new JButton();
+        bHEx.setIcon(new ImageIcon(imgOK));
+        bHEx.setBounds(05, 350, 20, 20);
+        bHEx.addActionListener(this);
+        add(bHEx);
+        
+        Tarea3=new JTextArea("System szesnatkowy");
+        Tarea3.setBounds(26, 350, 140, 20);
+        Tarea3.setBackground(Color.gray);
+        add(Tarea3);
+        
+        //Button for change color
+        Bcolor1=new JButton();
+        Bcolor1.setBounds(358, 335, 35, 35);
+        Bcolor1.setBackground(Color.blue);
+        Bcolor1.addActionListener(this);
+        add(Bcolor1);
+        
+        Bcolor2=new JButton();
+        Bcolor2.setBounds(320, 335, 35, 35);
+        Bcolor2.setBackground(Color.black);
+        Bcolor2.addActionListener(this);
+        add(Bcolor2);
+        
+        Bcolor3=new JButton();
+        Bcolor3.setBounds(320,298, 35, 35);
+        Bcolor3.setBackground(Color.red);
+        Bcolor3.addActionListener(this);
+        add(Bcolor3);
+        
+        Bcolor4=new JButton();
+        Bcolor4.setBounds(358,298, 35, 35);
+        Bcolor4.setBackground(Color.orange);
+        Bcolor4.addActionListener(this);
+        add(Bcolor4);
         
         
         jText =new JTextField("0");
@@ -219,38 +309,63 @@ public class MyPanel extends JPanel implements ActionListener  {
         
     }
     
-    private class ActionListenerAdapter implements  ActionListener
-    {
-
-        private JComponent component;
-        
-        public ActionListenerAdapter(JComponent component) {
-            this.component = component;
-        }
-        
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == component)
-            {
-                System.out.println("MOJ ACTION LISTENER");
-            }
-            
-        }
-        
-    }
+    
+    
+    
+   
 
     @Override
     public void actionPerformed(ActionEvent e)throws ArithmeticException {
        
         Object source=e.getSource();
+        
+        JButton[] tab= {button0,button1,button2,button3,button4,button5,button6,button7,button8,button9,
+                bBack,bCancel,bMinus,bMultiplication,bShare,bSum,bPlus,buttonComma};
+        
+        
+        
+        if(source.equals(Bcolor1)) {
+            
+            for(int i=0; i<tab.length; i++) {
+                
+                tab[i].setBackground(Color.blue);
+            }
+            jText.setBackground(Color.yellow);
+            
+            
+            
+            
+        }else if(source.equals(Bcolor2)) {
+            
+            for(int i=0; i<tab.length; i++) {
+                
+                tab[i].setBackground(Color.black);
+            }
+            jText.setBackground(Color.green);
+            
+            
+        }else if(source.equals(Bcolor3)) {
+            
+            for(int i=0; i<tab.length; i++) {
+                
+                tab[i].setBackground(Color.red);
+            }
+            jText.setBackground(Color.pink);
+            
+            
+        }else  if(source.equals(Bcolor4)) {
+            
+            for(int i=0; i<tab.length; i++) {
+                
+                tab[i].setBackground(Color.orange);
+            }
+            jText.setBackground(Color.gray);
+            
+            
+        }
        
       
-       
-        
-        
-        
-          
-       if(source.equals(button0)) {
+      if(source.equals(button0)) {
     
                 sBulider.append("0");
                 jText.setText(sBulider.toString());
@@ -320,11 +435,146 @@ public class MyPanel extends JPanel implements ActionListener  {
             if(sBulider.length()>0 && action==false) {
             sBulider.deleteCharAt(sBulider.length()-1);
             jText.setText(sBulider.toString());
+            if(sBulider.length()==0) {
+                jText.setText("0");
+            }
             sumFinal=0;
+            }
+        }else if(source.equals(bBinary)) {
+            
+            MyPanel panel=new MyPanel();
+            
+           
+           if(onHex==false && onOct==false) { 
+               
+            onBinary=true;   
+            
+            
+           if(onAction==true) {
+            
+               onAction=false;
+           if(action==true) {
+               
+               
+           jText.setText(panel.toBinarySystem(sumFinal));
+           Image imgOK2=new ImageIcon(this.getClass().getResource("/green.png")).getImage();
+           bBinary.setIcon(new ImageIcon(imgOK2));
+          
+           }else {
+               
+               Image imgOK=new ImageIcon(this.getClass().getResource("/green.png")).getImage();
+               bBinary.setIcon(new ImageIcon(imgOK));
+               
+               boxFornumber=Double.parseDouble(sBulider.toString());
+               jText.setText(panel.toBinarySystem(boxFornumber));
+           }
+           
+           }else {
+               
+               onAction=true;
+               Image imgOK=new ImageIcon(this.getClass().getResource("/green2.png")).getImage();
+               bBinary.setIcon(new ImageIcon(imgOK));
+               onBinary=false;
+               
+               if(action==true) {
+                   
+                   jText.setText(String.valueOf(sumFinal));
+               }else {
+                   
+                   jText.setText(String.valueOf(boxFornumber));
+               }
+               
+               
+           }
+           
+           
+         } 
+           }else if(source.equals(bOctal)) {
+               
+               MyPanel panel=new MyPanel();
+               
+              
+               if(onHex==false && onBinary==false) { 
+                   
+                   onOct=true;   
+               
+              if(onAction==true) {
+               
+                  onAction=false;
+              if(action==true) {    
+              jText.setText(panel.toOctalSystem(sumFinal));
+              Image imgOK2=new ImageIcon(this.getClass().getResource("/green.png")).getImage();
+              bOctal.setIcon(new ImageIcon(imgOK2));
+              }else {
+                  
+                  Image imgOK=new ImageIcon(this.getClass().getResource("/green.png")).getImage();
+                  bOctal.setIcon(new ImageIcon(imgOK));
+                  boxFornumber=Double.parseDouble(sBulider.toString());
+                  jText.setText(panel.toOctalSystem(boxFornumber));
+              }
+              
+              }else {
+                  
+                  onAction=true;
+                  Image imgOK=new ImageIcon(this.getClass().getResource("/green2.png")).getImage();
+                  bOctal.setIcon(new ImageIcon(imgOK));
+                  onOct=false;
+                  
+                  if(action==true) {
+                      
+                      jText.setText(String.valueOf(sumFinal));
+                  }else {
+                      
+                      jText.setText(String.valueOf(boxFornumber));
+                  }
+                  
+ 
+              }
+            }
+           }else if(source.equals(bHEx)) {
+               
+               MyPanel panel=new MyPanel();
+              
+               if(onBinary==false && onOct==false) { 
+                   
+                   onHex=true; 
+              
+              if(onAction==true) {
+               
+                  onAction=false;
+              if(action==true) {    
+              jText.setText(panel.toHexDecimal(sumFinal));
+              Image imgOK2=new ImageIcon(this.getClass().getResource("/green.png")).getImage();
+              bHEx.setIcon(new ImageIcon(imgOK2));
+              }else {
+                  
+                  Image imgOK=new ImageIcon(this.getClass().getResource("/green.png")).getImage();
+                  bHEx.setIcon(new ImageIcon(imgOK));
+                  boxFornumber=Double.parseDouble(sBulider.toString());
+                  jText.setText(panel.toHexDecimal(boxFornumber));
+              }
+              
+              }else {
+                  
+                  onAction=true;
+                  Image imgOK=new ImageIcon(this.getClass().getResource("/green2.png")).getImage();
+                  bHEx.setIcon(new ImageIcon(imgOK));
+                  onHex=false;
+                  
+                  if(action==true) {
+                      
+                      jText.setText(String.valueOf(sumFinal));
+                  }else {
+                      
+                      jText.setText(String.valueOf(boxFornumber));
+                  }
+                  
+                
+              }
             }
         }
      //*****************************************************************************************************************************
-       
+           
      if(source.equals(bPlus)) {
          
          operations=operations.PLUS;
@@ -493,229 +743,82 @@ public class MyPanel extends JPanel implements ActionListener  {
     }
 
 
-    
-        
-        
-    
-
-
-//***********************************************************************************************************************************
-
-    public JButton getButton1() {
-        return button1;
-    }
-
-    public void setButton1(JButton button1) {
-        this.button1 = button1;
-    }
-
-    public JButton getButton2() {
-        return button2;
-    }
-
-    public void setButton2(JButton button2) {
-        this.button2 = button2;
-    }
-
-    public JButton getButton3() {
-        return button3;
-    }
-
-    public void setButton3(JButton button3) {
-        this.button3 = button3;
-    }
-
-    public JButton getButton4() {
-        return button4;
-    }
-    
-    public void setButton4(JButton button4) {
-        this.button4 = button4;
-    }
-
-    public JButton getButton5() {
-        return button5;
-    }
-
-    public void setButton5(JButton button5) {
-        this.button5 = button5;
-    }
-
-    public JButton getButton6() {
-        return button6;
-    }
-
-    public void setButton6(JButton button6) {
-        this.button6 = button6;
-    }
-
-    public JButton getButton7() {
-        return button7;
-    }
-
-    public void setButton7(JButton button7) {
-        this.button7 = button7;
-    }
-
-    public JButton getButton8() {
-        return button8;
-    }
-
-    public void setButton8(JButton button8) {
-        this.button8 = button8;
-    }
-
-    public JButton getButton9() {
-        return button9;
-    }
-
-    public void setButton9(JButton button9) {
-        this.button9 = button9;
-    }
-
-
-    public JButton getButton0() {
-        return button0;
-    }
-
-    public void setButton0(JButton button0) {
-        this.button0 = button0;
-    }
-
-    public JButton getButtonComma() {
-        return buttonComma;
-    }
-
-    public void setButtonComma(JButton buttonComma) {
-        this.buttonComma = buttonComma;
-    }
-
-    public JButton getCalculate() {
-        return calculate;
-    }
-    
-    public void setCalculate(JButton calculate) {
-        this.calculate = calculate;
-    }
-
-    public JTextField getjText() {
-        return jText;
-    }
-
-    public void setjText(JTextField jText) {
-        this.jText = jText;
-    }
-
-    public JTextArea getjTextF() {
-        return jTextF;
-    }
-
-    public void setjTextF(JTextArea jTextF) {
-        this.jTextF = jTextF;
-    }
-
-    public JButton getbPlus() {
-        return bPlus;
-    }
-
-    public void setbPlus(JButton bPlus) {
-        this.bPlus = bPlus;
-    }
-
-    public JButton getbMinus() {
-        return bMinus;
-    }
-
-    public void setbMinus(JButton bMinus) {
-        this.bMinus = bMinus;
-    }
-
-    public JButton getbMultiplication() {
-        return bMultiplication;
-    }
-
-    public void setbMultiplication(JButton bMultiplication) {
-        this.bMultiplication = bMultiplication;
-    }
-
-    public JButton getbShare() {
-        return bShare;
-    }
-
-    public void setbShare(JButton bShare) {
-        this.bShare = bShare;
-    }
-
-    public JButton getbSum() {
-        return bSum;
-    }
-
-    public void setbSum(JButton bSum) {
-        this.bSum = bSum;
-    }
-
-    public StringBuilder getsBu() {
-        return sBulider;
-    }
-
-    public void setsBu(StringBuilder sBu) {
-        this.sBulider = sBu;
-    }
-
-    public Operations getOperations() {
-        return operations;
-    }
-
-    public void setOperations(Operations operations) {
-        this.operations = operations;
-    }
-
-    public Operations getoLast() {
-        return oLast;
-    }
-
-    public void setoLast(Operations oLast) {
-        this.oLast = oLast;
-    }
-
-    public static double getSumFinal() {
-        return sumFinal;
-    }
-
-    public static void setSumFinal(double sumFinal) {
-        MyPanel.sumFinal = sumFinal;
-    }
-
-    public static double getBoxFornumber() {
-        return boxFornumber;
-    }
-
-    public static void setBoxFornumber(double boxFornumber) {
-        MyPanel.boxFornumber = boxFornumber;
-    }
-
-    public static double getBoxFornumber2() {
-        return boxFornumber2;
-    }
-
-    public static void setBoxFornumber2(double boxFornumber2) {
-        MyPanel.boxFornumber2 = boxFornumber2;
-    }
-
-    public StringBuilder getsBulider() {
-        return sBulider;
-    }
-
-    public void setsBulider(StringBuilder sBulider) {
-        this.sBulider = sBulider;
-    }
+ //***********************************************************************************************************************************
 
   
 
+  
+    private  String toBinarySystem(double number){
+        List<Integer> list=new ArrayList<>();
+        String finishSum="";
+        
+        int box=(int)number;
+        
+        StringBuffer sb=new StringBuffer();
+        
+      
+        
+        while(box>0){
+            
+           if(box%2==0){
+                list.add( 0);
+            }else{
+                list.add(1);
+            }
+            box=box/2;
+            
+        }
+        
+        
+    for(int i=list.size()-1; i>=0 ; i--){
+        
+        
+        sb.append(list.get(i).toString());
+    
+    }
+        return sb.toString();
+      
+    }
 
 
 
-
+    private  String toOctalSystem(double number){
+        List<Integer> list=new ArrayList<>();
+        String finishSum="";
+        
+        int box=(int)number;
+        
+        StringBuffer sb=new StringBuffer();
+        
+      
+        
+        while(box>0){
+            
+            list.add(box%8);
+            
+            
+            box=box/8;
+            
+        }
+        
+       for(int i=list.size()-1; i>=0 ; i--){
+        
+        
+        sb.append(list.get(i).toString());
+    
+    }
+        return sb.toString();
+      
+    }
+    
+    private String toHexDecimal (double number) {
+        
+        int box=(int)number;
+        String fNumber=Integer.toHexString(box);
+        
+        return fNumber;
+        
+    }
 
 
 
