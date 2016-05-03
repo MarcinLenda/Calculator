@@ -66,8 +66,6 @@ public class MyPanel extends JPanel implements ActionListener  {
     //helping variable 
     private static double sumFinal=0;
     private static double boxFornumber=0;
-    private static double boxFornumber2=0;
-    private static double help=0;
     private static boolean action=false;
     private boolean onAction=true;
     private boolean onBinary=false, onOct=false, onHex=false;
@@ -75,26 +73,10 @@ public class MyPanel extends JPanel implements ActionListener  {
     
     StringBuilder sBulider=new StringBuilder();
     
-  
-   
-    
-    
-    
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public MyPanel() {
+        public MyPanel() {
         
         setLayout(null);
         
-  
         button1=new JButton();
         button1.setBounds(05,100,80,40);
         button1.addActionListener(this);
@@ -240,6 +222,8 @@ public class MyPanel extends JPanel implements ActionListener  {
         bBack.setBackground(Color.orange);
         add(bBack);
         
+        
+        //***************************************************************************************************************************
         //button to convert numbers
         bBinary=new JButton();
         Image imgOK=new ImageIcon(this.getClass().getResource("/green2.png")).getImage();
@@ -275,6 +259,7 @@ public class MyPanel extends JPanel implements ActionListener  {
         Tarea3.setBackground(Color.gray);
         add(Tarea3);
         
+        //***************************************************************************************************************************
         //Button for change color
         Bcolor1=new JButton();
         Bcolor1.setBounds(358, 335, 35, 35);
@@ -300,7 +285,8 @@ public class MyPanel extends JPanel implements ActionListener  {
         Bcolor4.addActionListener(this);
         add(Bcolor4);
         
-        
+        //Main display
+        //**************************************************************************************************************************
         jText =new JTextField("0");
         jText.setBounds(05, 05, 385, 90);
         jText.setFont(new Font("TimesNewRoman",Font.BOLD,40));
@@ -322,7 +308,7 @@ public class MyPanel extends JPanel implements ActionListener  {
         JButton[] tab= {button0,button1,button2,button3,button4,button5,button6,button7,button8,button9,
                 bBack,bCancel,bMinus,bMultiplication,bShare,bSum,bPlus,buttonComma};
         
-        
+        //option change color
         
         if(source.equals(Bcolor1)) {
             
@@ -331,9 +317,6 @@ public class MyPanel extends JPanel implements ActionListener  {
                 tab[i].setBackground(Color.blue);
             }
             jText.setBackground(Color.yellow);
-            
-            
-            
             
         }else if(source.equals(Bcolor2)) {
             
@@ -363,6 +346,9 @@ public class MyPanel extends JPanel implements ActionListener  {
             
             
         }
+        
+        //initzialization boxForNumber 
+        //**************************************************************************************************************************
        
       
       if(source.equals(button0)) {
@@ -440,6 +426,10 @@ public class MyPanel extends JPanel implements ActionListener  {
             }
             sumFinal=0;
             }
+            
+            //Convert numbers to Bin,Oct,Hex system
+            //********************************************************************************************************************
+            
         }else if(source.equals(bBinary)) {
             
             MyPanel panel=new MyPanel();
@@ -573,6 +563,8 @@ public class MyPanel extends JPanel implements ActionListener  {
               }
             }
         }
+      
+      //initzialization enum variable
      //*****************************************************************************************************************************
            
      if(source.equals(bPlus)) {
@@ -598,6 +590,8 @@ public class MyPanel extends JPanel implements ActionListener  {
          operations=operations.CANCEL;
      }
      
+     
+     //Operations maths
      //*****************************************************************************************************************************
     
      switch(operations) {
@@ -638,8 +632,6 @@ public class MyPanel extends JPanel implements ActionListener  {
          jText.setText("*");
          boxFornumber=Double.parseDouble(sBulider.toString());
          sumFinal+=boxFornumber;
-         help++;
-         
          //reste values
          sBulider.delete(0, sBulider.length());
          oLast=operations.MULTIPLICATION;
@@ -743,6 +735,9 @@ public class MyPanel extends JPanel implements ActionListener  {
     }
 
 
+    
+    
+  //Methods to convert numbers    
  //***********************************************************************************************************************************
 
   
@@ -821,6 +816,236 @@ public class MyPanel extends JPanel implements ActionListener  {
     }
 
 
+
+    //**********************************************************************************************************************************
+    
+    
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((Bcolor1 == null) ? 0 : Bcolor1.hashCode());
+        result = prime * result + ((Bcolor2 == null) ? 0 : Bcolor2.hashCode());
+        result = prime * result + ((Bcolor3 == null) ? 0 : Bcolor3.hashCode());
+        result = prime * result + ((Bcolor4 == null) ? 0 : Bcolor4.hashCode());
+        result = prime * result + ((Tarea1 == null) ? 0 : Tarea1.hashCode());
+        result = prime * result + ((Tarea2 == null) ? 0 : Tarea2.hashCode());
+        result = prime * result + ((Tarea3 == null) ? 0 : Tarea3.hashCode());
+        result = prime * result + ((bBack == null) ? 0 : bBack.hashCode());
+        result = prime * result + ((bBinary == null) ? 0 : bBinary.hashCode());
+        result = prime * result + ((bCancel == null) ? 0 : bCancel.hashCode());
+        result = prime * result + ((bHEx == null) ? 0 : bHEx.hashCode());
+        result = prime * result + ((bMinus == null) ? 0 : bMinus.hashCode());
+        result = prime * result
+                + ((bMultiplication == null) ? 0 : bMultiplication.hashCode());
+        result = prime * result + ((bOctal == null) ? 0 : bOctal.hashCode());
+        result = prime * result + ((bPlus == null) ? 0 : bPlus.hashCode());
+        result = prime * result + ((bShare == null) ? 0 : bShare.hashCode());
+        result = prime * result + ((bSum == null) ? 0 : bSum.hashCode());
+        result = prime * result + ((button0 == null) ? 0 : button0.hashCode());
+        result = prime * result + ((button1 == null) ? 0 : button1.hashCode());
+        result = prime * result + ((button2 == null) ? 0 : button2.hashCode());
+        result = prime * result + ((button3 == null) ? 0 : button3.hashCode());
+        result = prime * result + ((button4 == null) ? 0 : button4.hashCode());
+        result = prime * result + ((button5 == null) ? 0 : button5.hashCode());
+        result = prime * result + ((button6 == null) ? 0 : button6.hashCode());
+        result = prime * result + ((button7 == null) ? 0 : button7.hashCode());
+        result = prime * result + ((button8 == null) ? 0 : button8.hashCode());
+        result = prime * result + ((button9 == null) ? 0 : button9.hashCode());
+        result = prime * result
+                + ((buttonComma == null) ? 0 : buttonComma.hashCode());
+        result = prime * result + ((jText == null) ? 0 : jText.hashCode());
+        result = prime * result + ((oLast == null) ? 0 : oLast.hashCode());
+        result = prime * result + (onAction ? 1231 : 1237);
+        result = prime * result + (onBinary ? 1231 : 1237);
+        result = prime * result + (onHex ? 1231 : 1237);
+        result = prime * result + (onOct ? 1231 : 1237);
+        result = prime * result
+                + ((operations == null) ? 0 : operations.hashCode());
+        result = prime * result
+                + ((sBulider == null) ? 0 : sBulider.hashCode());
+        return result;
+    }
+
+
+
+
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        MyPanel other = (MyPanel) obj;
+        if (Bcolor1 == null) {
+            if (other.Bcolor1 != null)
+                return false;
+        } else if (!Bcolor1.equals(other.Bcolor1))
+            return false;
+        if (Bcolor2 == null) {
+            if (other.Bcolor2 != null)
+                return false;
+        } else if (!Bcolor2.equals(other.Bcolor2))
+            return false;
+        if (Bcolor3 == null) {
+            if (other.Bcolor3 != null)
+                return false;
+        } else if (!Bcolor3.equals(other.Bcolor3))
+            return false;
+        if (Bcolor4 == null) {
+            if (other.Bcolor4 != null)
+                return false;
+        } else if (!Bcolor4.equals(other.Bcolor4))
+            return false;
+        if (Tarea1 == null) {
+            if (other.Tarea1 != null)
+                return false;
+        } else if (!Tarea1.equals(other.Tarea1))
+            return false;
+        if (Tarea2 == null) {
+            if (other.Tarea2 != null)
+                return false;
+        } else if (!Tarea2.equals(other.Tarea2))
+            return false;
+        if (Tarea3 == null) {
+            if (other.Tarea3 != null)
+                return false;
+        } else if (!Tarea3.equals(other.Tarea3))
+            return false;
+        if (bBack == null) {
+            if (other.bBack != null)
+                return false;
+        } else if (!bBack.equals(other.bBack))
+            return false;
+        if (bBinary == null) {
+            if (other.bBinary != null)
+                return false;
+        } else if (!bBinary.equals(other.bBinary))
+            return false;
+        if (bCancel == null) {
+            if (other.bCancel != null)
+                return false;
+        } else if (!bCancel.equals(other.bCancel))
+            return false;
+        if (bHEx == null) {
+            if (other.bHEx != null)
+                return false;
+        } else if (!bHEx.equals(other.bHEx))
+            return false;
+        if (bMinus == null) {
+            if (other.bMinus != null)
+                return false;
+        } else if (!bMinus.equals(other.bMinus))
+            return false;
+        if (bMultiplication == null) {
+            if (other.bMultiplication != null)
+                return false;
+        } else if (!bMultiplication.equals(other.bMultiplication))
+            return false;
+        if (bOctal == null) {
+            if (other.bOctal != null)
+                return false;
+        } else if (!bOctal.equals(other.bOctal))
+            return false;
+        if (bPlus == null) {
+            if (other.bPlus != null)
+                return false;
+        } else if (!bPlus.equals(other.bPlus))
+            return false;
+        if (bShare == null) {
+            if (other.bShare != null)
+                return false;
+        } else if (!bShare.equals(other.bShare))
+            return false;
+        if (bSum == null) {
+            if (other.bSum != null)
+                return false;
+        } else if (!bSum.equals(other.bSum))
+            return false;
+        if (button0 == null) {
+            if (other.button0 != null)
+                return false;
+        } else if (!button0.equals(other.button0))
+            return false;
+        if (button1 == null) {
+            if (other.button1 != null)
+                return false;
+        } else if (!button1.equals(other.button1))
+            return false;
+        if (button2 == null) {
+            if (other.button2 != null)
+                return false;
+        } else if (!button2.equals(other.button2))
+            return false;
+        if (button3 == null) {
+            if (other.button3 != null)
+                return false;
+        } else if (!button3.equals(other.button3))
+            return false;
+        if (button4 == null) {
+            if (other.button4 != null)
+                return false;
+        } else if (!button4.equals(other.button4))
+            return false;
+        if (button5 == null) {
+            if (other.button5 != null)
+                return false;
+        } else if (!button5.equals(other.button5))
+            return false;
+        if (button6 == null) {
+            if (other.button6 != null)
+                return false;
+        } else if (!button6.equals(other.button6))
+            return false;
+        if (button7 == null) {
+            if (other.button7 != null)
+                return false;
+        } else if (!button7.equals(other.button7))
+            return false;
+        if (button8 == null) {
+            if (other.button8 != null)
+                return false;
+        } else if (!button8.equals(other.button8))
+            return false;
+        if (button9 == null) {
+            if (other.button9 != null)
+                return false;
+        } else if (!button9.equals(other.button9))
+            return false;
+        if (buttonComma == null) {
+            if (other.buttonComma != null)
+                return false;
+        } else if (!buttonComma.equals(other.buttonComma))
+            return false;
+        if (jText == null) {
+            if (other.jText != null)
+                return false;
+        } else if (!jText.equals(other.jText))
+            return false;
+        if (oLast != other.oLast)
+            return false;
+        if (onAction != other.onAction)
+            return false;
+        if (onBinary != other.onBinary)
+            return false;
+        if (onHex != other.onHex)
+            return false;
+        if (onOct != other.onOct)
+            return false;
+        if (operations != other.operations)
+            return false;
+        if (sBulider == null) {
+            if (other.sBulider != null)
+                return false;
+        } else if (!sBulider.equals(other.sBulider))
+            return false;
+        return true;
+    }
 
 
 
